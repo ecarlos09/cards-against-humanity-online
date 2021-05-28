@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Cards Against Humanity Online API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --legacy-watch index.js",
+    "test": "jest --setupFiles ./tests/integration/config.js --testPathPattern=/integration/ --watchAll --detectOpenHandles --runInBand --verbose",
+    "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
+    "coverage": "jest --setupFiles ./tests/integration/config.js --testPathPattern=/integration/ --coverage",
+    "unitCoverage": "jest --testPathPattern=/unit/ --coverage"
+  },
+  "author": "Elwin Carlos",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.0.1",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9",
+    "socket.io": "^4.1.2"
+  }
+}

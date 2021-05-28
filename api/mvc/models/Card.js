@@ -43,8 +43,8 @@ const axios = require('axios')
 class Card {
   constructor(data) {
     this.id = data._id;
-    this.text = data.text;
-    this.type = data.type;
+    this.text = data._text;
+    this.type = data._type;
   }
 
   static get all() {

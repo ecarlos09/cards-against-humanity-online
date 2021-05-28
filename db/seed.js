@@ -5,6 +5,8 @@ const cardSeeds = readJSON()
 
 db.cards.drop();
 
-db.cards.insertMany(
-    cardSeeds
-);
+db.cards.insertMany([
+    {text:"\"Tweeting.\"", type: "white"},
+    {text:"(I am doing Kegels right now.)", type: "white"},
+    {text:"10,000 Syrian refugees.", type: "white"}
+]);

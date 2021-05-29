@@ -2,63 +2,41 @@ const { init } = require("../../config/dbConfig");
 const { ObjectId } = require('mongodb'); 
 const axios = require('axios')
 
-// function countPoints(score, difficulty, type) {
-//     let difM
-//     let typeM
-//     switch (difficulty) {
-//         case 'medium':
-//             difM = 2
-//             break;
-//         case 'hard':
-//             difM = 3
-//             break;
-//         default:
-//             difM = 1
-//             break;
-//     }
-//     switch (type) {
-//         case 'boolean':
-//             typeM = 1
-//             break;
-//         default:
-//             typeM = 2
-//             break;
-//     }
-//     return score * difM * typeM *  100 
-// }   
-
-// class Questions {
-//     constructor(data){
-//         this.id = data._id
-//         this.questions = data.questions.results.map((result) => ({
-//             category: result.category,
-//             difficulty: result.difficulty,
-//             type: result.type,
-//             question: result.question,
-//             possible_answers: result.incorrect_answers.concat([result.correct_answer]).sort(() => Math.random() - 0.5)
-//         }))
-//     }
-// }
-
 class Card {
   constructor(data) {
-    this.id = data._id;
-    this.text = data._text;
-    this.type = data._type;
+    this.id = data.id;
+    this.text = data.text;
+    this.type = data.type;
   }
 
   static get all() {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const db = await init();
-        const collection = await db.collection("cards");
-        const cards = await collection.find({});
-        resolve(cards.toArray());
-      } catch (err) {
-        reject(`Error retrieving cards: ${err.message}`);
-      }
-    });
-  }
+    return new Promise (async (resolve, reject) => {
+        try {
+            const db = await init()
+            const cardsData = await db.collection('cards').find().toArray()
+            console.log(cardsData)
+            const cards = cardsData.map(c => new Card({ ...c, id: c._id }))
+            resolve(cards);
+        } catch (err) {
+            console.log(err);
+            reject("Error retrieving cards")
+        }
+    })
+}
+
+  // static get all() {
+  //   return new Promise(async (resolve, reject) => {
+  //     try {
+  //       const db = await init();
+  //       const collection = await db.collection("cards");
+  //       console.log(db);
+  //       const cards = await collection.find({});
+  //       resolve(cards.toArray());
+  //     } catch (err) {
+  //       reject(`Error retrieving cards: ${err.message}`);
+  //     }
+  //   });
+  // }
 
 //   static findById(id) {
 //     return new Promise(async (resolve, reject) => {

@@ -1,4 +1,4 @@
-const db = connect("mongodb://localhost:27017/dev_db");
+const db = connect("mongodb://localhost:27017/cahcards");
 
 // const { readJSON } = require('./json-manager')
 // const cardSeeds = readJSON()

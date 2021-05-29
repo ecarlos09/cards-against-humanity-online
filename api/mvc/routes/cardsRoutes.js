@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const cardsControllers = require('../controllers/cards')
 
-router.get('/', cardsControllers.fetchAll);
+router.get('/', cardsControllers.allCards);
 
 // router.get('/scores', async (req, res) => {
 //     try {

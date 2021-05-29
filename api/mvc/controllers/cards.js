@@ -1,8 +1,8 @@
-const { Card } = require('../models/Card');
+const Card = require('../models/card');
 
-const fetchAll = async (req, res) => {
+const allCards = async (req, res) => {
     try {
-        // const id = req.params.id
+        const id = req.params.id
         const cards = await Card.all
         res.status(200).json({cards})
     } catch(err) {
@@ -75,4 +75,4 @@ const fetchAll = async (req, res) => {
 //     }
 // });
 
-module.exports = { fetchAll }
+module.exports = { allCards }
